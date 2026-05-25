@@ -15,10 +15,28 @@ const magicButton = document.querySelector("#magicButton");
 const surpriseDialog = document.querySelector("#surpriseDialog");
 const closeDialog = document.querySelector("#closeDialog");
 const moreHearts = document.querySelector("#moreHearts");
-const photoInput = document.querySelector("#photoInput");
-const photoButtons = document.querySelectorAll("[data-slot]");
 let currentCompliment = 0;
-let activePhotoButton = null;
+
+function prepareFixedPhotos() {
+  document.querySelectorAll(".photo-slot img, .memory-card img").forEach((image) => {
+    const card = image.closest(".photo-slot, .memory-card");
+
+    function markLoaded() {
+      card.classList.add("has-photo");
+    }
+
+    function markMissing() {
+      card.classList.remove("has-photo");
+    }
+
+    if (image.complete && image.naturalWidth > 0) {
+      markLoaded();
+    }
+
+    image.addEventListener("load", markLoaded);
+    image.addEventListener("error", markMissing);
+  });
+}
 
 function showNextCompliment() {
   currentCompliment = (currentCompliment + 1) % compliments.length;
@@ -66,25 +84,7 @@ function openSurprise() {
   surpriseDialog.setAttribute("open", "");
 }
 
-photoButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    activePhotoButton = button;
-    photoInput.click();
-  });
-});
-
-photoInput.addEventListener("change", () => {
-  const [file] = photoInput.files;
-  if (!file || !activePhotoButton) return;
-
-  const image = activePhotoButton.querySelector("img");
-  image.src = URL.createObjectURL(file);
-  image.alt = "Добавленная фотография";
-  activePhotoButton.classList.add("has-photo");
-  activePhotoButton = null;
-  photoInput.value = "";
-});
-
+prepareFixedPhotos();
 nextCompliment.addEventListener("click", showNextCompliment);
 magicButton.addEventListener("click", openSurprise);
 moreHearts.addEventListener("click", () => burstHearts(moreHearts));
