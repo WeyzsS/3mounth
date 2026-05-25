@@ -50,9 +50,9 @@ button {
 }
 
 .hero {
-  min-height: 620px;
+  min-height: 580px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.86fr);
+  grid-template-columns: minmax(0, 0.96fr) minmax(340px, 0.88fr);
   align-items: center;
   gap: 42px;
   padding: 56px;
@@ -61,6 +61,10 @@ button {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 248, 242, 0.64));
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
+}
+
+.hero-copy {
+  min-width: 0;
 }
 
 .kicker,
@@ -80,16 +84,17 @@ p {
 }
 
 h1 {
-  max-width: 680px;
+  max-width: 560px;
   margin-bottom: 20px;
   font-family: "Segoe Script", "Brush Script MT", cursive;
-  font-size: clamp(4.4rem, 10vw, 8.5rem);
-  line-height: 0.88;
+  font-size: clamp(3.2rem, 5.4vw, 5.75rem);
+  line-height: 1.04;
   font-weight: 400;
+  text-wrap: balance;
 }
 
 .lead {
-  max-width: 570px;
+  max-width: 520px;
   margin-bottom: 32px;
   color: var(--muted);
   font-size: 1.06rem;
@@ -129,7 +134,7 @@ h1 {
 
 .photo-orbit {
   position: relative;
-  min-height: 480px;
+  min-height: 450px;
 }
 
 .photo-slot,
@@ -138,7 +143,6 @@ h1 {
   color: var(--ink);
   background: rgba(255, 255, 255, 0.62);
   box-shadow: 0 18px 48px rgba(82, 50, 78, 0.18);
-  cursor: pointer;
 }
 
 .photo-slot {
@@ -178,12 +182,14 @@ h1 {
   padding: 18px;
   text-align: center;
   color: var(--muted);
+  font-size: 0.95rem;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
 .main-photo {
-  inset: 40px 70px auto auto;
-  width: min(340px, 82vw);
+  inset: 38px 42px auto auto;
+  width: min(320px, 82vw);
   aspect-ratio: 4 / 5;
   transform: rotate(3deg);
   background:
@@ -192,7 +198,7 @@ h1 {
 }
 
 .small-photo {
-  width: 162px;
+  width: 150px;
   aspect-ratio: 1;
 }
 
@@ -269,6 +275,7 @@ h1 {
   align-content: center;
   padding: 26px;
   text-align: left;
+  cursor: pointer;
   background: linear-gradient(135deg, rgba(151, 215, 195, 0.42), rgba(255, 255, 255, 0.72));
 }
 
@@ -286,10 +293,11 @@ h1 {
 .ambient-hearts span,
 .burst-heart {
   position: fixed;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   transform: rotate(45deg);
   background: var(--rose);
+  filter: drop-shadow(0 8px 12px rgba(155, 47, 102, 0.26));
   pointer-events: none;
 }
 
@@ -299,20 +307,20 @@ h1 {
 .burst-heart::after {
   content: "";
   position: absolute;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: inherit;
 }
 
 .ambient-hearts span::before,
 .burst-heart::before {
-  left: -9px;
+  left: -11px;
 }
 
 .ambient-hearts span::after,
 .burst-heart::after {
-  top: -9px;
+  top: -11px;
 }
 
 .ambient-hearts span {
@@ -337,14 +345,15 @@ h1 {
 .burst-heart {
   left: var(--left);
   top: var(--top);
-  z-index: 20;
+  z-index: 30;
   opacity: 0;
-  animation: burst 980ms ease-out forwards;
+  animation: burst 1200ms ease-out forwards;
 }
 
 .surprise {
   width: min(520px, calc(100% - 32px));
   padding: 42px;
+  overflow: visible;
   border: 0;
   border-radius: 8px;
   color: var(--ink);
@@ -352,17 +361,33 @@ h1 {
   box-shadow: var(--shadow);
 }
 
+.surprise > :not(.modal-heart-layer) {
+  position: relative;
+  z-index: 2;
+}
+
 .surprise::backdrop {
   background: rgba(43, 25, 43, 0.34);
   backdrop-filter: blur(8px);
 }
 
+.modal-heart-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: visible;
+  pointer-events: none;
+}
+
 .surprise h2 {
+  max-width: 100%;
   margin-bottom: 12px;
   font-family: "Segoe Script", "Brush Script MT", cursive;
-  font-size: 4.2rem;
-  line-height: 0.95;
+  font-size: clamp(2.35rem, 8vw, 3.1rem);
+  line-height: 1.08;
   font-weight: 400;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .surprise p {
@@ -415,7 +440,7 @@ h1 {
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 980px) {
   .card-shell {
     width: min(100% - 20px, 620px);
     padding: 10px 0 28px;
@@ -429,7 +454,9 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(4rem, 19vw, 6.2rem);
+    max-width: 100%;
+    font-size: clamp(3.15rem, 12vw, 5.1rem);
+    line-height: 1.06;
   }
 
   .photo-orbit {
@@ -462,6 +489,10 @@ h1 {
 }
 
 @media (max-width: 480px) {
+  h1 {
+    font-size: clamp(2.8rem, 14vw, 4.1rem);
+  }
+
   .small-photo {
     width: 132px;
   }
@@ -473,4 +504,9 @@ h1 {
   .compliments {
     grid-template-columns: 1fr;
   }
+
+  .surprise {
+    padding: 34px 24px 28px;
+  }
 }
+
