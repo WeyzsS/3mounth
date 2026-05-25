@@ -15,7 +15,12 @@ const magicButton = document.querySelector("#magicButton");
 const surpriseDialog = document.querySelector("#surpriseDialog");
 const closeDialog = document.querySelector("#closeDialog");
 const moreHearts = document.querySelector("#moreHearts");
+const modalHeartLayer = document.createElement("div");
 let currentCompliment = 0;
+
+modalHeartLayer.className = "modal-heart-layer";
+modalHeartLayer.setAttribute("aria-hidden", "true");
+surpriseDialog.prepend(modalHeartLayer);
 
 function prepareFixedPhotos() {
   document.querySelectorAll(".photo-slot img, .memory-card img").forEach((image) => {
@@ -50,7 +55,7 @@ function showNextCompliment() {
   complimentText.textContent = compliments[currentCompliment];
 }
 
-function burstHearts(origin) {
+function burstHearts(origin, container = document.body) {
   const rect = origin.getBoundingClientRect();
   const startX = rect.left + rect.width / 2;
   const startY = rect.top + rect.height / 2;
@@ -69,27 +74,28 @@ function burstHearts(origin) {
     heart.style.setProperty("--dy", `${dy}px`);
     heart.style.background = colors[i % colors.length];
     heart.style.animationDelay = `${Math.random() * 110}ms`;
-    document.body.append(heart);
+    container.append(heart);
     heart.addEventListener("animationend", () => heart.remove());
   }
 }
 
 function openSurprise() {
-  burstHearts(magicButton);
   showNextCompliment();
   if (typeof surpriseDialog.showModal === "function") {
     surpriseDialog.showModal();
-    return;
+  } else {
+    surpriseDialog.setAttribute("open", "");
   }
-  surpriseDialog.setAttribute("open", "");
+  setTimeout(() => burstHearts(surpriseDialog, modalHeartLayer), 80);
 }
 
 prepareFixedPhotos();
 nextCompliment.addEventListener("click", showNextCompliment);
 magicButton.addEventListener("click", openSurprise);
-moreHearts.addEventListener("click", () => burstHearts(moreHearts));
+moreHearts.addEventListener("click", () => burstHearts(moreHearts, modalHeartLayer));
 closeDialog.addEventListener("click", () => surpriseDialog.close());
 
 document.querySelector("#tinyNote").addEventListener("click", (event) => {
   burstHearts(event.currentTarget);
 });
+
