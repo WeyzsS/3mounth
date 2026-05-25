@@ -18,8 +18,8 @@
           <p class="kicker">Для самой особенной</p>
           <h1>Ты делаешь этот мир нежнее</h1>
           <p class="lead">
-            Эта открытка хранит пару тёплых слов, места для ваших любимых
-            фотографий и маленький сюрприз, который оживает по нажатию.
+            Эта открытка хранит пару тёплых слов, ваши любимые фотографии и
+            маленький сюрприз, который оживает по нажатию.
           </p>
           <button class="magic-button" id="magicButton" type="button">
             <span class="spark"></span>
@@ -27,19 +27,19 @@
           </button>
         </div>
 
-        <div class="photo-orbit" aria-label="Места для фотографий">
-          <button class="photo-slot main-photo" type="button" data-slot="0">
-            <img alt="" />
-            <span>Ваше любимое фото</span>
-          </button>
-          <button class="photo-slot small-photo top-photo" type="button" data-slot="1">
-            <img alt="" />
-            <span>Улыбка</span>
-          </button>
-          <button class="photo-slot small-photo bottom-photo" type="button" data-slot="2">
-            <img alt="" />
-            <span>Момент</span>
-          </button>
+        <div class="photo-orbit" aria-label="Фотографии">
+          <div class="photo-slot main-photo">
+            <img src="images/main.jpg" alt="Ваше любимое фото" />
+            <span>images/main.jpg</span>
+          </div>
+          <div class="photo-slot small-photo top-photo">
+            <img src="images/smile.jpg" alt="Её улыбка" />
+            <span>images/smile.jpg</span>
+          </div>
+          <div class="photo-slot small-photo bottom-photo">
+            <img src="images/moment.jpg" alt="Особенный момент" />
+            <span>images/moment.jpg</span>
+          </div>
         </div>
       </section>
 
@@ -56,14 +56,14 @@
       </section>
 
       <section class="memory-grid" aria-label="Фотографии">
-        <button class="memory-card" type="button" data-slot="3">
-          <img alt="" />
-          <span>Нажми, чтобы добавить фото</span>
-        </button>
-        <button class="memory-card" type="button" data-slot="4">
-          <img alt="" />
-          <span>Ещё один тёплый кадр</span>
-        </button>
+        <div class="memory-card">
+          <img src="images/memory-1.jpg" alt="Тёплый совместный кадр" />
+          <span>images/memory-1.jpg</span>
+        </div>
+        <div class="memory-card">
+          <img src="images/memory-2.jpg" alt="Ещё один любимый кадр" />
+          <span>images/memory-2.jpg</span>
+        </div>
         <button class="memory-card note-card" type="button" id="tinyNote">
           <strong>Маленькая записка</strong>
           <span>В тебе столько света, что рядом хочется становиться лучше.</span>
@@ -86,7 +86,6 @@
       <button class="soft-button" id="moreHearts" type="button">Ещё сердечек</button>
     </dialog>
 
-    <input id="photoInput" type="file" accept="image/*" hidden />
     <script src="script.js"></script>
   </body>
 </html>
