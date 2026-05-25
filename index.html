@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Открытка для тебя</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient-hearts" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <main class="card-shell">
+      <section class="hero" aria-label="Поздравительная открытка">
+        <div class="hero-copy">
+          <p class="kicker">Для самой особенной</p>
+          <h1>Ты делаешь этот мир нежнее</h1>
+          <p class="lead">
+            Эта открытка хранит пару тёплых слов, места для ваших любимых
+            фотографий и маленький сюрприз, который оживает по нажатию.
+          </p>
+          <button class="magic-button" id="magicButton" type="button">
+            <span class="spark"></span>
+            <span>Открыть сюрприз</span>
+          </button>
+        </div>
+
+        <div class="photo-orbit" aria-label="Места для фотографий">
+          <button class="photo-slot main-photo" type="button" data-slot="0">
+            <img alt="" />
+            <span>Ваше любимое фото</span>
+          </button>
+          <button class="photo-slot small-photo top-photo" type="button" data-slot="1">
+            <img alt="" />
+            <span>Улыбка</span>
+          </button>
+          <button class="photo-slot small-photo bottom-photo" type="button" data-slot="2">
+            <img alt="" />
+            <span>Момент</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="compliments" aria-label="Комплименты">
+        <div>
+          <p class="section-label">Комплименты</p>
+          <h2 id="complimentText">Ты прекрасна даже в обычные дни.</h2>
+        </div>
+        <button class="icon-button" id="nextCompliment" type="button" aria-label="Следующий комплимент">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 4V2L8 6l4 4V8a4 4 0 1 1-4 4H6a6 6 0 1 0 6-6Z" />
+          </svg>
+        </button>
+      </section>
+
+      <section class="memory-grid" aria-label="Фотографии">
+        <button class="memory-card" type="button" data-slot="3">
+          <img alt="" />
+          <span>Нажми, чтобы добавить фото</span>
+        </button>
+        <button class="memory-card" type="button" data-slot="4">
+          <img alt="" />
+          <span>Ещё один тёплый кадр</span>
+        </button>
+        <button class="memory-card note-card" type="button" id="tinyNote">
+          <strong>Маленькая записка</strong>
+          <span>В тебе столько света, что рядом хочется становиться лучше.</span>
+        </button>
+      </section>
+    </main>
+
+    <dialog class="surprise" id="surpriseDialog">
+      <button class="close-button" id="closeDialog" type="button" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18" />
+        </svg>
+      </button>
+      <p class="script-title">Секретное послание</p>
+      <h2>Ты невероятная</h2>
+      <p>
+        Спасибо за твою улыбку, нежность, характер и тот уют, который появляется
+        просто потому, что ты рядом.
+      </p>
+      <button class="soft-button" id="moreHearts" type="button">Ещё сердечек</button>
+    </dialog>
+
+    <input id="photoInput" type="file" accept="image/*" hidden />
+    <script src="script.js"></script>
+  </body>
+</html>
